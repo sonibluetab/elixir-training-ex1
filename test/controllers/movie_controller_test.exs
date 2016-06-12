@@ -48,14 +48,14 @@ defmodule Ex1.MovieControllerTest do
      assert "New movie" = html |> Floki.find("h2") |> Floki.text
      refute html |> Floki.find("form") |> Enum.empty?
    end
+
+   test "creates resource and redirects when data is valid", %{conn: conn} do
+     conn = post conn, movie_path(conn, :create), movie: @valid_attrs
+     assert redirected_to(conn) == movie_path(conn, :index)
+
+    assert @valid_attrs["title"] == Movies.first.title
+  end
   
-  # test "creates resource and redirects when data is valid", %{conn: conn} do
-  #   conn = post conn, movie_path(conn, :create), movie: @valid_attrs
-  #   assert redirected_to(conn) == movie_path(conn, :index)
-  #
-  #   assert @valid_attrs["title"] == Movies.first.title
-  # end
-  #
   # test "shows chosen resource", %{conn: conn} do
   #   movie = insert_movie()
   #   conn = get conn, movie_path(conn, :show, movie)
