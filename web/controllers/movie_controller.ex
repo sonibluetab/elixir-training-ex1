@@ -8,4 +8,8 @@ defmodule Ex1.MovieController do
     conn
     |> render("index.html", movieList: movieList)
   end
+
+  def new(conn, _params) do
+    render conn, "new.html"
+  end
 end

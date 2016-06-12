@@ -26,7 +26,7 @@ defmodule Ex1.MovieControllerTest do
      [new_movie] = html |> Floki.find("a.new-movie")
      assert ["/movies/new"] = new_movie |> Floki.attribute("href")
    end
-  
+
   test "lists all entries on index", %{conn: conn} do
      first = insert_movie(%{"title" => "first"})
      second = insert_movie(%{"title" => "second"})
@@ -40,15 +40,15 @@ defmodule Ex1.MovieControllerTest do
      assert ["/movies/#{second.id}"] == items |> Enum.at(0) |> Floki.attribute("href")
      assert ["/movies/#{first.id}"] == items |> Enum.at(1) |> Floki.attribute("href")
    end
-  #
-  # test "renders form for new movie", %{conn: conn} do
-  #   conn = get conn, movie_path(conn, :new)
-  #   html = html_response(conn, 200)
-  #
-  #   assert "New movie" = html |> Floki.find("h2") |> Floki.text
-  #   refute html |> Floki.find("form") |> Enum.empty?
-  # end
-  #
+
+   test "renders form for new movie", %{conn: conn} do
+     conn = get conn, movie_path(conn, :new)
+     html = html_response(conn, 200)
+
+     assert "New movie" = html |> Floki.find("h2") |> Floki.text
+     refute html |> Floki.find("form") |> Enum.empty?
+   end
+  
   # test "creates resource and redirects when data is valid", %{conn: conn} do
   #   conn = post conn, movie_path(conn, :create), movie: @valid_attrs
   #   assert redirected_to(conn) == movie_path(conn, :index)
