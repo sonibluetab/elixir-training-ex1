@@ -2,6 +2,6 @@
 <h2>Listing movies</h2>
 <ul class="movies">
 <%= for movie <- @movieList do %>
-  <li><%= movie.title %></li>
+  <li><%= link movie.title, to: movie_path(@conn, :show, movie.id) %></li>
 <% end %>
 </ul>
