@@ -17,16 +17,15 @@ defmodule Ex1.MovieControllerTest do
   end
   defp insert_movie, do: insert_movie(%{})
 
-  # test "lists empty entries on index and new movie link", %{conn: conn} do
-  #   conn = get conn, movie_path(conn, :index)
-  #   html = html_response(conn, 200)
-  #
-  #   assert "Listing movies" = html |> Floki.find("h2") |> Floki.text
-  #   refute html |> Floki.find("ul.movies") |> Enum.empty?
-  #
-  #   [new_movie] = html |> Floki.find("a.new-movie")
-  #   assert ["/movies/new"] = new_movie |> Floki.attribute("href")
-  # end
+  test "lists empty entries on index and new movie link", %{conn: conn} do
+   conn = get conn, movie_path(conn, :index)
+   html = html_response(conn, 200)
+   assert "Listing movies" = html |> Floki.find("h2") |> Floki.text
+     refute html |> Floki.find("ul.movies") |> Enum.empty?
+
+     [new_movie] = html |> Floki.find("a.new-movie")
+     assert ["/movies/new"] = new_movie |> Floki.attribute("href")
+   end
   #
   # test "lists all entries on index", %{conn: conn} do
   #   first = insert_movie(%{"title" => "first"})
