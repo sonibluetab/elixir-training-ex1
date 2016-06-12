@@ -1,0 +1,7 @@
+
+<%= link "Movies", to: movie_path(@conn, :index), class: "back pull-right" %>
+<div class="movie">
+<h2><%= @movie.title %>, <%= @movie.year %></h2>
+<img src="<%= @movie.cover %>">
+<p><%= @movie.plot %></p>
+</div>

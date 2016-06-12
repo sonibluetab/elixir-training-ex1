@@ -55,25 +55,25 @@ defmodule Ex1.MovieControllerTest do
 
     assert @valid_attrs["title"] == Movies.first.title
   end
-  
-  # test "shows chosen resource", %{conn: conn} do
-  #   movie = insert_movie()
-  #   conn = get conn, movie_path(conn, :show, movie)
-  #
-  #   html = html_response(conn, 200)
-  #   refute html |> Floki.find(".movie") |> Enum.empty?
-  #
-  #   title = "#{movie.title}, #{movie.year}"
-  #   assert title == html |> Floki.find(".movie h2") |> Floki.text
-  #
-  #   [cover_image] = html |> Floki.find(".movie img")
-  #   assert [@valid_attrs["cover"]] == cover_image |> Floki.attribute("src")
-  #
-  #   [plot_paragraph] = html |> Floki.find(".movie p")
-  #   assert @valid_attrs["plot"] == plot_paragraph |> Floki.text
-  #
-  #   [back_link] = html |> Floki.find("a.back")
-  #   assert ["/movies"] = back_link |> Floki.attribute("href")
-  # end
+
+  test "shows chosen resource", %{conn: conn} do
+    movie = insert_movie()
+    conn = get conn, movie_path(conn, :show, movie)
+
+    html = html_response(conn, 200)
+    refute html |> Floki.find(".movie") |> Enum.empty?
+
+    title = "#{movie.title}, #{movie.year}"
+    assert title == html |> Floki.find(".movie h2") |> Floki.text
+
+    [cover_image] = html |> Floki.find(".movie img")
+    assert [@valid_attrs["cover"]] == cover_image |> Floki.attribute("src")
+
+    [plot_paragraph] = html |> Floki.find(".movie p")
+    assert @valid_attrs["plot"] == plot_paragraph |> Floki.text
+
+    [back_link] = html |> Floki.find("a.back")
+    assert ["/movies"] = back_link |> Floki.attribute("href")
+  end
 
 end

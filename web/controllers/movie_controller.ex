@@ -17,4 +17,9 @@ defmodule Ex1.MovieController do
     Movies.insert(movie)
     redirect conn, to: movie_path(conn, :index)
   end
+
+  def show(conn, %{"id" => movieId} = params) do
+    movie = Movies.get(movieId)
+    render conn, "show.html", movie: movie
+  end
 end
